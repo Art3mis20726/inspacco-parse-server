@@ -1,0 +1,16 @@
+{
+    "apps": [
+      {
+        "serverURL": "http://192.168.29.219:1337/parse",
+        "appId": "inspacco-parse-server",
+        "masterKey": "cfc12696c23e4d8fab0f8a11fececc5e",
+        "appName": "Inspacco"
+      }
+    ],
+    "users": [
+        {
+          "user":"sammy",
+          "pass":"Sammy@123"
+        }
+      ]
+  }

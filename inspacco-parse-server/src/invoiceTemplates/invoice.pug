@@ -1,0 +1,88 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    style
+      include fonts.css
+      include styles.css
+  body
+    include header.pug
+    main
+      .q-metadata
+        .date #{date}
+        .id Quotation Id: ##{quotationId}
+      .to-part
+        .to To
+        .name #{requesterFirstName} #{requesterLastName}
+        .address #{requesterArea}, #{requesterCity}
+        .mobile #{requesterMobile}
+      .subject Subject: Quotation for #{serviceName} Service
+      .body
+        .mention Dear #{requesterFirstName},
+        .reference
+          | Ref: Your enquiry for #{serviceName} Service dated #{serviceReqDate}
+        .msg
+          | Thank you for showing interest in our products &amp; contacting us. Please
+          | find our exclusive quotation for your requirement of #{serviceName}
+          | Service
+        table(border='1')
+          thead
+          td S.No
+          td Item Description
+          td Qty
+          td Price
+          td Amount
+          tbody
+            each item, index in items ? items : []
+              tr
+                td= index+1
+                td= item.serviceDescription
+                td= item.qty
+                td= 'Rs. ' + item.price 
+                td= 'Rs. ' + item.amount
+            tr
+              td(colspan='4')
+                b Sub Total
+              td
+                b Rs. #{subTotal}
+            tr
+              td(colspan='4') Other Charges
+              td #{otherCharger}
+            tr
+              td(colspan='4') Tax (#{taxPercentage}%)
+              td Rs. #{taxAmount}
+            tr
+              td(colspan='4') Discount (#{discountPercentage}%)
+              td Rs. #{discountAmount}
+            tr
+              td(colspan='4')
+                b Grand Total
+              td
+                b Rs. #{grandTotal}
+        .job-scope
+          .title Scope of work
+          ul
+            li
+              | Cras ultricies ligula sed magna dictum porta. Curabitur aliquet
+              | quam id dui posuere blandit. Donec sollicitudin molestie
+              | malesuada. Nulla porttitor accumsan tincidunt.
+            li
+              | Proin eget tortor risus. Curabitur non nulla sit amet nisl tempus
+              | convallis quis ac lectus.
+            li
+              | Praesent sapien massa, convallis a pellentesque nec, egestas non
+              | nisi. Proin eget tortor risus.
+        .payment-terms
+          .title Payment terms
+          ul
+            li
+              | Proin eget tortor risus. Curabitur non nulla sit amet nisl tempus
+              | convallis quis ac lectus.
+            li
+              | Cras ultricies ligula sed magna dictum porta. Curabitur aliquet
+              | quam id dui posuere blandit. Donec sollicitudin molestie
+              | malesuada. Nulla porttitor accumsan tincidunt.
+            li
+              | Praesent sapien massa, convallis a pellentesque nec, egestas non
+              | nisi. Proin eget tortor risus.
+    include footer.pug

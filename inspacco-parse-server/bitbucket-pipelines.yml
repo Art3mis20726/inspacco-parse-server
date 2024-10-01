@@ -1,0 +1,36 @@
+#  Template NodeJS build
+
+#  This template allows you to validate your NodeJS code.
+#  The workflow allows running tests and code linting on the default branch.
+
+image: atlassian/default-image:2
+
+pipelines:
+  default:
+    - step:
+        name: Build and Lint
+        caches:
+          - node
+        script:
+          - echo "Building and linting application"
+          - npm install
+          - npm build
+  branches:
+    develop:
+      - step:
+          name: Deploy to Test
+          deployment: Test
+          script:
+            - echo "Building source code zip"
+            - zip inspacco-parse-server.zip -r src public .eslintignore .eslintrc jest.config.js package-lock.json package.json tsconfig.json .platform .ebextensions Dockerfile .dockerignore
+            - echo "Deploying to Test environment"
+            - pipe: atlassian/aws-elasticbeanstalk-deploy:0.5.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                APPLICATION_NAME: $APPLICATION_NAME
+                ENVIRONMENT_NAME: $ENVIRONMENT_NAME
+                ZIP_FILE: 'inspacco-parse-server.zip'
+          artifacts:
+            - inspacco-parse-server.zip

@@ -1,0 +1,77 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    style
+      include fonts.css
+      include styles.css
+  body
+    include header.pug
+    main
+      .q-metadata
+        .date #{quotationDate}
+        .id Quotation Id: ##{quotationNumber}
+      .to-part
+        .to To
+        .name #{requesterName}
+        if societyAddress
+          .address #{societyAddress}
+        .mobile #{requesterMobile}
+      .subject Subject: Quotation for #{serviceName}
+      .body
+        .mention Dear #{requestFirstName},
+        .reference
+          | Ref: Your enquiry for #{serviceName} service dated #{serviceRequestDate}
+        .msg
+          | Thank you for showing interest in our services. Please
+          | find our exclusive quotation for your requirement.
+        table(border='1')
+          thead
+            td S.No
+            td Item Description
+            td Qty
+            td Price
+            td Amount
+          tbody
+            each item in items ? items: []
+              tr
+                td= item.serialNumber
+                td= item.serviceDescription
+                td= item.quantity
+                td= 'Rs. ' + item.rate 
+                td= 'Rs. ' + item.amount
+            tr
+              td(colspan='4')
+                b Sub Total
+              td
+                b Rs. #{subTotal}
+            tr
+              td(colspan='4') Other Charges
+              if otherChargesPercentage
+                td Rs. #{otherCharges}
+              else
+                td Nil
+            tr
+              td(colspan='4') Discount (#{discountPercentage}%)
+              if discountPercentage
+                td Rs. #{discount}
+              else
+                td Nil
+            tr
+              td(colspan='4') Tax (#{taxPercentage}%)
+              if taxPercentage
+                td Rs. #{tax}
+              else
+                td Nil
+            tr
+              td(colspan='4')
+                b Grand Total
+              td
+                b Rs. #{grandTotal}
+        .job-scope
+          .title Scope of work and Payment terms
+          ul
+            each scopeItem in scopeItems ? scopeItems : []
+              li= scopeItem
+            
+    include footer.pug

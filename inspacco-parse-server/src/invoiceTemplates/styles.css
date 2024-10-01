@@ -1,0 +1,105 @@
+html {
+  -webkit-print-color-adjust: exact;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+}
+.container {
+  background: #DDDDDD;
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-radius: 10px;
+}
+header .text {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.company-name {
+  font-size: 20px;
+  color: rgb(0, 50, 143);
+  font-weight: 500;
+}
+
+header .address {
+  margin-top: 10px;
+}
+
+header .mobile,
+.email,
+.gst {
+  font-size: 14px;
+}
+
+header .mobile {
+  margin-top: 10px;
+}
+
+main {
+  padding: 10px 0;
+}
+
+.q-metadata {
+  font-size: 14px;
+  text-align: right;
+}
+
+.subject {
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.body {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.body .reference {
+  margin-top: 10px;
+}
+
+.body .msg {
+  margin-top: 10px;
+}
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+}
+
+thead {
+  background-color: #ddd;
+}
+
+td {
+  padding: 5px;
+  border: 1px solid #aaa;
+}
+
+td[colspan] {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.job-scope {
+  margin-top: 50px;
+  font-size: 14px;
+}
+
+.title {
+  font-weight: 500;
+}
+
+footer {
+  padding: 20px 0;
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+  text-align: right;
+}
